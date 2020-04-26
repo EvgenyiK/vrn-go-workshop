@@ -21,9 +21,10 @@ func main() {
 	h := handler.NewHandler()
 	r := chi.NewRouter()
 	r.Get("/hello", h.Hello)
+	path := cfg.Host + ":" + cfg.Port
 
-	log.Print("starting server")
-	err = http.ListenAndServe(":8080", r)
+	log.Printf("starting server at %s", path)
+	err = http.ListenAndServe(path, r)
 	log.Fatal(err)
 
 	log.Print("shutting server down")
